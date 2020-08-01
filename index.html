@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lovevery | Play Kits</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="carousel.css">
+</head>
+<body>
+
+  <!-- Nav header -->
+  <nav class="navbar">
+    <ul class="navbar-left">
+      <li><a class="nav-item nav-dropdown menu-shop">Shop</a></li>
+      <li><a class="nav-item nav-dropdown-about menu-about-us">About Us</a></li>
+    </ul>
+
+    <div class="navbar-center"><a class="header-logo" href="/"></a></div>
+
+    <div class="navbar-right">
+      <a class="nav-item menu-help" href="/pages/help">Help</a>
+      <a class="nav-item menu-sign-in" href="/account/login">Sign In</a>
+        
+      <a class="nav-item cart-link" id="menu-cart" href="/cart">
+        <span>Cart</span>
+        <span class="cart-counter" id="cart-counter-desktop">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs -->
+  <ul class="breadcrumbs">
+    <li class="breadcrumb-past"><a href="#">Home</a></li>
+    <li class="breadcrumb-past"><a href="#">Play Kits</a></li>
+    <!-- TODO: Update dynamically -->
+    <li class="breadcrumb-current"><a href="#">The Sensor Play Kit</a></li>
+  </ul>
+
+  <main class="container">
+
+    <!-- Main image and carousel -->
+    <div class="picture-section">
+      <img class="main-image" src="">
+
+      <div class="carousel"></div>
+    </div>
+
+    <!-- Playkit details -->
+    <div class="playkit-details">
+      
+      <h1 class="playkit-title"></h1>
+
+      <div class="playkit-metadata">
+        <div class="review-summary">
+          <div class="review-stars">
+            <img class="review-stars-empty" src="https://i.ibb.co/mz4Fd9L/stars-empty.jpg">
+            <span class="review-stars-full-overlay" data-stars="0"></span>
+          </div>
+          <div class="review-count">
+            <span class="review-count-num"></span><span> Reviews</span>
+          </div>
+        </div>
+        <div class="suitable-info">
+          <span>Suitable for </span><span class="suitable-for"></span><span> months old</span>
+        </div>
+        <div class="subscription-type"><span>Part of: </span><a href="#">Play Kit Subscription</a></div>
+      </div>
+
+      <div class="playkit-desc"></div>
+    </div>
+
+    <div class="carousel my-carousel carousel--translate">
+      <input class="carousel__activator" type="radio" name="carousel" id="F" checked="checked"/>
+      <input class="carousel__activator" type="radio" name="carousel" id="G"/>
+      <input class="carousel__activator" type="radio" name="carousel" id="H"/>
+      <input class="carousel__activator" type="radio" name="carousel" id="I"/>
+      <input class="carousel__activator" type="radio" name="carousel" id="J"/>
+      <div class="carousel__controls">
+        <label class="carousel__control carousel__control--backward" for="J"></label>
+        <label class="carousel__control carousel__control--forward" for="G"></label>
+      </div>
+      <div class="carousel__controls">
+        <label class="carousel__control carousel__control--backward" for="F"></label>
+        <label class="carousel__control carousel__control--forward" for="H"></label>
+      </div>
+      <div class="carousel__controls">
+        <label class="carousel__control carousel__control--backward" for="G"></label>
+        <label class="carousel__control carousel__control--forward" for="I"></label>
+      </div>
+      <div class="carousel__controls">
+        <label class="carousel__control carousel__control--backward" for="H"></label>
+        <label class="carousel__control carousel__control--forward" for="J"></label>
+      </div>
+      <div class="carousel__controls">
+        <label class="carousel__control carousel__control--backward" for="I"></label>
+        <label class="carousel__control carousel__control--forward" for="F"></label>
+      </div>
+      <div class="carousel__track">
+        <li class="carousel__slide">
+          <h1>F</h1>
+        </li>
+        <li class="carousel__slide">
+          <h1>G</h1>
+        </li>
+        <li class="carousel__slide">
+          <h1>H</h1>
+        </li>
+        <li class="carousel__slide">
+          <h1>I</h1>
+        </li>
+        <li class="carousel__slide">
+          <h1>J</h1>
+        </li>
+      </div>
+      <div class="carousel__indicators">
+        <label class="carousel__indicator" for="F"></label>
+        <label class="carousel__indicator" for="G"></label>
+        <label class="carousel__indicator" for="H"></label>
+        <label class="carousel__indicator" for="I"></label>
+        <label class="carousel__indicator" for="J"></label>
+      </div>
+    </div>
+  </div>
+    
+  </main>
+
+  <script src="./playkits.js"></script>
+  <script>
+
+    const selectedKit = window.playkits.senser;
+    const template = getTemplate();
+    populateTemplate(selectedKit);
+
+
+    function populateTemplate({ title, reviews, suitableFor, desc, images }) {
+
+      // Title
+      template.title.textContent = title;
+
+      // Reviews
+      template.reviews.stars.dataset.stars = reviews.stars;
+      template.reviews.num.innerHTML = reviews.num;
+
+      // Suitable For
+      template.suitableFor.textContent = suitableFor;
+
+      // Description
+      template.desc.textContent = desc;
+
+    }
+
+    
+    function getTemplate() {
+      const container = document.querySelector('.container');
+
+      return {
+        title: container.querySelector('.playkit-title'),
+        reviews: {
+          stars: container.querySelector('.review-stars-full-overlay'),
+          num: container.querySelector('.review-count-num'),
+        },
+        suitableFor: container.querySelector('.suitable-for'),
+        desc: container.querySelector('.playkit-desc'),
+        mainImage: container.querySelector('.main-image') 
+      };
+    }
+  </script>
+</body>
+</html>
