@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovevery | Play Kits</title>
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="carousel.css">
+  <link rel="stylesheet" type="text/css" href="datepicker.min.css">
 </head>
 <body>
 
@@ -33,6 +33,8 @@
     <li class="breadcrumb-past"><a href="#">Home</a></li>
     <li class="breadcrumb-past"><a href="#">Play Kits</a></li>
     <!-- TODO: Update dynamically -->
+    <!-- TODO: Refactor CSS with vars-->
+    <!-- TODO: Comments in date picker -->
     <li class="breadcrumb-current"><a href="#">The Sensor Play Kit</a></li>
   </ul>
 
@@ -40,9 +42,20 @@
 
     <!-- Main image and carousel -->
     <div class="picture-section">
-      <img class="main-image" src="">
+      <img class="main-image" src="./images/K1.Lifestyle.jpg">
 
-      <div class="carousel"></div>
+      <div class="carousel">
+        <button id="carousel-prev" class="carousel-control">&leftarrow;</button>
+        <ul class="carousel-track">
+          <li><img src="./images/K1.1.Silicone.Rattle.jpg"></li>
+          <li><img src="./images/K1.2.Standing.Card.Holder.jpg"></li>
+          <li><img src="./images/K1.3.Simple.BW.Card.Set.jpg"></li>
+          <li><img src="./images/K1.4.Travel.Card.Holder.jpg"></li>
+          <li><img src="./images/K1.5.Complex.BW.Card.Set.jpg"></li>
+          <li><img src="./images/K1.6.BW.Mittens.jpg"></li>
+        </ul>
+        <button id="carousel-next" class="carousel-control">&rightarrow;</button>
+      </div>
     </div>
 
     <!-- Playkit details -->
@@ -53,81 +66,69 @@
       <div class="playkit-metadata">
         <div class="review-summary">
           <div class="review-stars">
-            <img class="review-stars-empty" src="https://i.ibb.co/mz4Fd9L/stars-empty.jpg">
+            <img class="review-stars-empty" src="./images/stars-empty.jpg">
             <span class="review-stars-full-overlay" data-stars="0"></span>
           </div>
           <div class="review-count">
             <span class="review-count-num"></span><span> Reviews</span>
           </div>
         </div>
+
+        <span class="divider"></span>
+
         <div class="suitable-info">
           <span>Suitable for </span><span class="suitable-for"></span><span> months old</span>
         </div>
+
+        <span class="divider"></span>
+
         <div class="subscription-type"><span>Part of: </span><a href="#">Play Kit Subscription</a></div>
       </div>
 
       <div class="playkit-desc"></div>
+
+      <div class="playkit-pricing">
+        <span>test</span>
+        <span>$80/kit, only available in the Play Kit subscription.</span>
+      </div>
+
+
+      <div class="playkit-selection">
+        <div class="input-group">
+          <label>Your child's name (optional)
+          </label>
+          <input type="text" id="child-name">
+        </div>
+
+        <div class="input-group">
+          <label>Birth date/due date
+          </label>
+          <input type="text" id="calendar">
+        </div>
+
+        <a id="subscribe-cta" href="#">Subscribe now</a>
+      </div>
+
+      <ul class="value-props">
+        <li>Free shipping</li>
+        <li>Cancel anytime</li>
+        <li>Satisfaction guaranteed</li>
+      </ul>
+
+      <section class="awards">
+        <img class="awards-image" src="./images/awards.png">
+      </section>
+    </div>
     </div>
 
-    <div class="carousel my-carousel carousel--translate">
-      <input class="carousel__activator" type="radio" name="carousel" id="F" checked="checked"/>
-      <input class="carousel__activator" type="radio" name="carousel" id="G"/>
-      <input class="carousel__activator" type="radio" name="carousel" id="H"/>
-      <input class="carousel__activator" type="radio" name="carousel" id="I"/>
-      <input class="carousel__activator" type="radio" name="carousel" id="J"/>
-      <div class="carousel__controls">
-        <label class="carousel__control carousel__control--backward" for="J"></label>
-        <label class="carousel__control carousel__control--forward" for="G"></label>
-      </div>
-      <div class="carousel__controls">
-        <label class="carousel__control carousel__control--backward" for="F"></label>
-        <label class="carousel__control carousel__control--forward" for="H"></label>
-      </div>
-      <div class="carousel__controls">
-        <label class="carousel__control carousel__control--backward" for="G"></label>
-        <label class="carousel__control carousel__control--forward" for="I"></label>
-      </div>
-      <div class="carousel__controls">
-        <label class="carousel__control carousel__control--backward" for="H"></label>
-        <label class="carousel__control carousel__control--forward" for="J"></label>
-      </div>
-      <div class="carousel__controls">
-        <label class="carousel__control carousel__control--backward" for="I"></label>
-        <label class="carousel__control carousel__control--forward" for="F"></label>
-      </div>
-      <div class="carousel__track">
-        <li class="carousel__slide">
-          <h1>F</h1>
-        </li>
-        <li class="carousel__slide">
-          <h1>G</h1>
-        </li>
-        <li class="carousel__slide">
-          <h1>H</h1>
-        </li>
-        <li class="carousel__slide">
-          <h1>I</h1>
-        </li>
-        <li class="carousel__slide">
-          <h1>J</h1>
-        </li>
-      </div>
-      <div class="carousel__indicators">
-        <label class="carousel__indicator" for="F"></label>
-        <label class="carousel__indicator" for="G"></label>
-        <label class="carousel__indicator" for="H"></label>
-        <label class="carousel__indicator" for="I"></label>
-        <label class="carousel__indicator" for="J"></label>
-      </div>
-    </div>
-  </div>
     
   </main>
 
+  <script src="./datepicker-full.min.js"></script>
   <script src="./playkits.js"></script>
   <script>
 
-    const selectedKit = window.playkits.senser;
+    const selectedKit = window.playkits[0];
     const template = getTemplate();
     populateTemplate(selectedKit);
 
@@ -163,6 +164,118 @@
         desc: container.querySelector('.playkit-desc'),
         mainImage: container.querySelector('.main-image') 
       };
+    }
+  </script>
+
+  <script>
+    const mainImage = document.querySelector('.main-image');
+    const carouselTrack = document.querySelector('.carousel-track');
+    const selectedClass = 'selected';
+
+    carouselTrack.addEventListener('click', updateMainImage);
+
+    function updateMainImage(e) {
+      if (!e.target.matches('img')) return;
+
+      const clickedImage = e.target;
+      mainImage.src = clickedImage.src;
+      resetSelectedClass();
+      addSelectedClass(clickedImage);
+    }
+
+    function addSelectedClass(thumb) {
+      thumb.classList.add(selectedClass);
+    }
+
+    function resetSelectedClass() {
+      const thumbnails = carouselTrack.querySelectorAll('img');
+      thumbnails.forEach(thumb => thumb.classList.remove(selectedClass));
+    }
+
+    document.querySelectorAll('.carousel-control').forEach(carouselControl => {
+      carouselControl.addEventListener('click', scrollCarousel);
+    });
+
+    function scrollCarousel(e) {
+
+      const thumbnails = carouselTrack.querySelectorAll('img');
+
+      const direction = (e.target.id === 'carousel-prev') ? 'left': 'right';
+
+      let anchorIndex;
+      let targetIndex;
+
+      for (let i = 0; i < thumbnails.length; i++) {
+        const currentThumb = thumbnails[i];
+        if (isVisible(currentThumb)) {
+          anchorIndex = i;
+          if (direction === 'left') break;
+        }
+      }
+
+      const targetDirection = (direction === 'left') ? -1 : 1;
+      targetIndex = anchorIndex + targetDirection;
+
+      console.log('anchorIndex', thumbnails[anchorIndex]);
+      console.log('targetIndex', thumbnails[targetIndex]);
+
+      if (!thumbnails[targetIndex]) return;
+      thumbnails[targetIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+
+    function isVisible(el) {
+
+      const style = getComputedStyle(el);
+
+      if (style.display === 'none' ||
+          style.visibility !== 'visible' ||
+          style.opacity < 0.1 ||
+          (el.offsetWidth + el.offsetHeight + 
+            el.getBoundingClientRect().height + el.getBoundingClientRect().width === 0)) {
+            return false;
+      }
+
+      elCenter = {
+        x: el.getBoundingClientRect().left + el.offsetWidth / 2,
+        y: el.getBoundingClientRect().top + el.offsetHeight / 2
+      };
+
+      if (elCenter.x < 0 || elCenter.y < 0) return false;
+      if (elCenter.x > (document.documentElement.clientWidth || window.innerWidth)) return false;
+      if (elCenter.y > (document.documentElement.clientHeight || window.innerHeight)) return false;
+
+
+      let pointContainer = document.elementFromPoint(elCenter.x, elCenter.y);
+
+      do {
+        if (pointContainer === el) return true;
+      } while (pointContainer = pointContainer.parentNode);
+
+      return false;
+    }
+  </script>
+
+
+  <script>
+    const cal = document.querySelector('#calendar');
+    const datepicker = new Datepicker(cal, {
+      autohide: true
+    });
+
+    cal.addEventListener('changeDate', updatePlaykit);
+
+    function updatePlaykit(e) {
+      const [ selectedDate ]  = e.detail.datepicker.dates;
+
+      console.log(selectedDate);
+
+      // Find first kit where selectedDate is less than the maxAage
+      const selectedKit = window.playkits.find(kit => {
+        return kit.maxAge < selectedDate;
+      });
+
+      populateTemplate(selectedKit);
     }
   </script>
 </body>

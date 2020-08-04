@@ -28,6 +28,8 @@
 body,
 ul {
   margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 /* Nav header */
@@ -43,8 +45,6 @@ nav {
 
 .navbar-left {
   flex: 2;
-  list-style-type: none;
-  padding: 0;
 }
 
 .navbar-left li {
@@ -90,7 +90,7 @@ nav {
   background-position: 50%;
   width: 167px;
   height: 18px;
-  background-image: url(https://cdn.shopify.com/s/files/1/2386/2119/t/12/assets/logo-green.svg);
+  background-image: url(./images/logo-green.svg);
 }
 
 .navbar-right {
@@ -122,10 +122,15 @@ nav {
 
 
 /* Breadcrumbs */
+main,
 .breadcrumbs {
-  padding: 0;
-  list-style-type: none;
-  margin-left: 50px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.breadcrumbs {
   font-family: "BrownPro-Regular", Arial, sans-serif;
   font-size: 14px;
   margin-bottom: 30px;
@@ -167,11 +172,105 @@ nav {
 
 main {
   border: solid 1px red;
+  font-family: 'BrownPro-Regular', Arial, sans-serif;
+  display: flex;
+  color: #514f4e;
+}
+
+.picture-section {
+  width: 35%;
+}
+
+.main-image {
+  width: auto;
+  max-width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.carousel {
+  border: solid 1px red;
+  position: relative;
+}
+
+.carousel-control,
+.carousel-track {
+  display: inline-block;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: hidden;
+  border: solid 1px green;
+  width: calc(100% - 130px);
+  margin: 0 auto;
+}
+
+.carousel-control {
+  position: absolute;
+  z-index: 10;
+  top: 30px;
+}
+
+.carousel-control:last-child {
+  right: 0;
+}
+
+.carousel-track li {
+  display: inline-block;
+  margin-right: 12px;
+}
+
+.carousel-track li:last-child {
+  margin-right: 0;
+}
+
+.carousel-track li img {
+  width: 80px;
+  border: solid 2px #e3e3e3;
+  cursor: pointer;
+}
+
+.carousel-track li img.selected {
+  border: solid 2px #29c95e;
+}
+
+.playkit-details {
+  width: 65%;
+  margin-left: 26px;
+}
+
+.main-image {
+  width: 100%;
 }
 
 
+
+.playkit-title {
+  font-family: 'BrownPro-Bold', Arial, sans-serif;
+  margin: 22px 0;
+}
+
+.playkit-metadata {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: solid 1px #e3e3e3;
+}
+
+.divider {
+  width: 1px;
+  border-right: solid 1px #e3e3e3;
+  margin: 0px 14px;
+}
+
+.review-stars,
+.review-count {
+  vertical-align: middle;
+}
+
 .review-stars {
-  border: solid 1px red;
   position: relative;
   display: inline-block;
 }
@@ -195,18 +294,104 @@ main {
   width: calc(var(--star-width) * 5);
 }
 
-
 .review-stars-full-overlay {
   position: absolute;
   left: 0;
   top: 0;
   z-index: 10;
-  background-image: url(https://i.ibb.co/brbH15D/stars-full.jpg);
+  background-image: url(./images/stars-full.jpg);
   width: 100%;
   height: 100%;
+  background-repeat: no-repeat;
+}
+
+.review-count {
+  color: #4edcca;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.review-count,
+.suitable-info,
+.subscription-type {
+  line-height: 20px;
+}
+
+.subscription-type a {
+  color: #6e8af5;
+  text-decoration: none;
 }
 
 
+.playkit-desc {
+  font-size: 18px;
+  line-height: 27px;
+  padding-right: 10%;
+  margin-bottom: 10px;
+}
 
+.playkit-pricing {
+  font-weight: bold;
+}
 
+.playkit-selection {
+  display: grid;
+  grid-template-columns: 30% 30% 175px;
+  grid-column-gap: 20px;
+  margin: 22px 0;
+  align-items: flex-end;
+  padding-right: 22px;
+}
 
+.input-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+}
+
+#child-name,
+#calendar {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  border: solid 1px #929292;
+  outline: none;
+  padding-left: 16px;
+}
+
+#subscribe-cta {
+  height: 50px;
+  background-color: #29c95f;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 18px;
+}
+
+.value-props {
+  font-weight: bold;
+}
+
+.value-props li {
+  display: inline-block;
+  margin-right: 18px;
+}
+
+.value-props li:before {
+  content: '';
+  display: inline-block;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  background-color: #29c95e;
+  margin-right: 8px;
+}
+
+.awards {
+  margin-top: 40px;
+}
+
+.awards .awards-image {
+  width: 410px;
+}
