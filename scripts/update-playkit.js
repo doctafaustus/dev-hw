@@ -81,6 +81,7 @@ function updatePlaykit(e) {
   errTooOld.style.display = 'none';
   populateTemplate(selectedKit);
   document.querySelector('.carousel-track li:first-child').scrollIntoView();
+  document.querySelector('#subscribe-cta').textContent = 'Subscribe now';
   fadeload();
 }
 

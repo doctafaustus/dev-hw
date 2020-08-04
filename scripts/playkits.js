@@ -1,4 +1,4 @@
-// Define playkits global data map for use on PDP 
+// Define playkits data map for use on PDP 
 window.playkits = [
 
   {

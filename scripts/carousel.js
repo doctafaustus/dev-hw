@@ -7,7 +7,7 @@ const selectedClass = 'selected';
 // Add thumbnail listener
 carouselTrack.addEventListener('click', updateMainImage);
 
-// Add carousel controls listeners
+// Add carousel control listeners
 document.querySelectorAll('.carousel-control').forEach(carouselControl => {
   carouselControl.addEventListener('click', scrollCarousel);
 });
