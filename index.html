@@ -3,8 +3,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lovevery | Play Kits</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="datepicker.min.css">
+  <link rel="stylesheet" type="text/css" href="./stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="./stylesheets/datepicker.css">
 </head>
 <body>
 
@@ -32,27 +32,19 @@
   <ul class="breadcrumbs">
     <li class="breadcrumb-past"><a href="#">Home</a></li>
     <li class="breadcrumb-past"><a href="#">Play Kits</a></li>
-    <!-- TODO: Update dynamically -->
-    <!-- TODO: Refactor CSS with vars-->
-    <!-- TODO: Comments in date picker -->
-    <li class="breadcrumb-current"><a href="#">The Sensor Play Kit</a></li>
+    <li class="breadcrumb-current"><a href="#"></a></li>
   </ul>
 
   <main class="container">
 
     <!-- Main image and carousel -->
     <div class="picture-section">
-      <img class="main-image" src="./images/K1.Lifestyle.jpg">
+      <img class="main-image" src="" alt="Play Kit Main Image">
 
       <div class="carousel">
         <button id="carousel-prev" class="carousel-control">&leftarrow;</button>
         <ul class="carousel-track">
-          <li><img src="./images/K1.1.Silicone.Rattle.jpg"></li>
-          <li><img src="./images/K1.2.Standing.Card.Holder.jpg"></li>
-          <li><img src="./images/K1.3.Simple.BW.Card.Set.jpg"></li>
-          <li><img src="./images/K1.4.Travel.Card.Holder.jpg"></li>
-          <li><img src="./images/K1.5.Complex.BW.Card.Set.jpg"></li>
-          <li><img src="./images/K1.6.BW.Mittens.jpg"></li>
+          <!-- Images are dynamically inserted -->
         </ul>
         <button id="carousel-next" class="carousel-control">&rightarrow;</button>
       </div>
@@ -66,7 +58,7 @@
       <div class="playkit-metadata">
         <div class="review-summary">
           <div class="review-stars">
-            <img class="review-stars-empty" src="./images/stars-empty.jpg">
+            <img class="review-stars-empty" src="./images/stars-empty.jpg" alt="Review Stars">
             <span class="review-stars-full-overlay" data-stars="0"></span>
           </div>
           <div class="review-count">
@@ -74,24 +66,18 @@
           </div>
         </div>
 
-        <span class="divider"></span>
-
         <div class="suitable-info">
           <span>Suitable for </span><span class="suitable-for"></span><span> months old</span>
         </div>
-
-        <span class="divider"></span>
-
         <div class="subscription-type"><span>Part of: </span><a href="#">Play Kit Subscription</a></div>
       </div>
 
       <div class="playkit-desc"></div>
 
       <div class="playkit-pricing">
-        <span>test</span>
+        <img class="hands-icon" src="./images/hands-icon.png" alt="Hands Icon">
         <span>$80/kit, only available in the Play Kit subscription.</span>
       </div>
-
 
       <div class="playkit-selection">
         <div class="input-group">
@@ -106,7 +92,11 @@
           <input type="text" id="calendar">
         </div>
 
-        <a id="subscribe-cta" href="#">Subscribe now</a>
+        <button id="subscribe-cta">Subscribe now</button>
+      </div>
+
+      <div class="err-too-old">
+        Our Baby Play Kits are too young for your child, but check out our <a href="https://lovevery.com/products/the-play-kits#toddler-playkits">Toodler Play Kits</a>
       </div>
 
       <ul class="value-props">
@@ -116,7 +106,7 @@
       </ul>
 
       <section class="awards">
-        <img class="awards-image" src="./images/awards.png">
+        <img class="awards-image" src="./images/awards.png" alt="Awards">
       </section>
     </div>
     </div>
@@ -124,159 +114,12 @@
     
   </main>
 
-  <script src="./datepicker-full.min.js"></script>
-  <script src="./playkits.js"></script>
-  <script>
+  <!-- Vanilla JS Datepicker https://mymth.github.io/vanillajs-datepicker/#/ -->
+  <script src="./scripts/datepicker-full.min.js"></script>
 
-    const selectedKit = window.playkits[0];
-    const template = getTemplate();
-    populateTemplate(selectedKit);
-
-
-    function populateTemplate({ title, reviews, suitableFor, desc, images }) {
-
-      // Title
-      template.title.textContent = title;
-
-      // Reviews
-      template.reviews.stars.dataset.stars = reviews.stars;
-      template.reviews.num.innerHTML = reviews.num;
-
-      // Suitable For
-      template.suitableFor.textContent = suitableFor;
-
-      // Description
-      template.desc.textContent = desc;
-
-    }
-
-    
-    function getTemplate() {
-      const container = document.querySelector('.container');
-
-      return {
-        title: container.querySelector('.playkit-title'),
-        reviews: {
-          stars: container.querySelector('.review-stars-full-overlay'),
-          num: container.querySelector('.review-count-num'),
-        },
-        suitableFor: container.querySelector('.suitable-for'),
-        desc: container.querySelector('.playkit-desc'),
-        mainImage: container.querySelector('.main-image') 
-      };
-    }
-  </script>
-
-  <script>
-    const mainImage = document.querySelector('.main-image');
-    const carouselTrack = document.querySelector('.carousel-track');
-    const selectedClass = 'selected';
-
-    carouselTrack.addEventListener('click', updateMainImage);
-
-    function updateMainImage(e) {
-      if (!e.target.matches('img')) return;
-
-      const clickedImage = e.target;
-      mainImage.src = clickedImage.src;
-      resetSelectedClass();
-      addSelectedClass(clickedImage);
-    }
-
-    function addSelectedClass(thumb) {
-      thumb.classList.add(selectedClass);
-    }
-
-    function resetSelectedClass() {
-      const thumbnails = carouselTrack.querySelectorAll('img');
-      thumbnails.forEach(thumb => thumb.classList.remove(selectedClass));
-    }
-
-    document.querySelectorAll('.carousel-control').forEach(carouselControl => {
-      carouselControl.addEventListener('click', scrollCarousel);
-    });
-
-    function scrollCarousel(e) {
-
-      const thumbnails = carouselTrack.querySelectorAll('img');
-
-      const direction = (e.target.id === 'carousel-prev') ? 'left': 'right';
-
-      let anchorIndex;
-      let targetIndex;
-
-      for (let i = 0; i < thumbnails.length; i++) {
-        const currentThumb = thumbnails[i];
-        if (isVisible(currentThumb)) {
-          anchorIndex = i;
-          if (direction === 'left') break;
-        }
-      }
-
-      const targetDirection = (direction === 'left') ? -1 : 1;
-      targetIndex = anchorIndex + targetDirection;
-
-      console.log('anchorIndex', thumbnails[anchorIndex]);
-      console.log('targetIndex', thumbnails[targetIndex]);
-
-      if (!thumbnails[targetIndex]) return;
-      thumbnails[targetIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-
-    function isVisible(el) {
-
-      const style = getComputedStyle(el);
-
-      if (style.display === 'none' ||
-          style.visibility !== 'visible' ||
-          style.opacity < 0.1 ||
-          (el.offsetWidth + el.offsetHeight + 
-            el.getBoundingClientRect().height + el.getBoundingClientRect().width === 0)) {
-            return false;
-      }
-
-      elCenter = {
-        x: el.getBoundingClientRect().left + el.offsetWidth / 2,
-        y: el.getBoundingClientRect().top + el.offsetHeight / 2
-      };
-
-      if (elCenter.x < 0 || elCenter.y < 0) return false;
-      if (elCenter.x > (document.documentElement.clientWidth || window.innerWidth)) return false;
-      if (elCenter.y > (document.documentElement.clientHeight || window.innerHeight)) return false;
-
-
-      let pointContainer = document.elementFromPoint(elCenter.x, elCenter.y);
-
-      do {
-        if (pointContainer === el) return true;
-      } while (pointContainer = pointContainer.parentNode);
-
-      return false;
-    }
-  </script>
-
-
-  <script>
-    const cal = document.querySelector('#calendar');
-    const datepicker = new Datepicker(cal, {
-      autohide: true
-    });
-
-    cal.addEventListener('changeDate', updatePlaykit);
-
-    function updatePlaykit(e) {
-      const [ selectedDate ]  = e.detail.datepicker.dates;
-
-      console.log(selectedDate);
-
-      // Find first kit where selectedDate is less than the maxAage
-      const selectedKit = window.playkits.find(kit => {
-        return kit.maxAge < selectedDate;
-      });
-
-      populateTemplate(selectedKit);
-    }
-  </script>
+  <!-- Custom scripts -->
+  <script src="./scripts/playkits.js"></script>
+  <script src="./scripts/carousel.js"></script>
+  <script src="./scripts/update-playkit.js"></script>
 </body>
 </html>
